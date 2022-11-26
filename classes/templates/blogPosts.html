@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="layout :: header-css"/>
+</head>
+
+<body>
+
+<header>
+    <div th:replace="layout :: site-header-post"/>
+</header>
+
+<main id="posts">
+    <article th:each="p : ${post}">
+        <h2 class="title" th:text="${p.title}">Post Title</h2>
+        <div>
+            <small>
+                <p class="text-muted">Posted on: <span th:text="${#dates.format(p.createDate, 'dd-MM-yyyy HH:mm')}">No Date Set</span></p>
+                <p class="text-muted">Posted By: <span th:text="${p.username}"></span></p>
+            </small>
+            <p class="content" th:text="${p.body}">Post content</p>
+        </div>
+    </article>
+</main>
+
+<h4><strong>Comments</strong></h4>
+<div>
+    <article th:each="c : ${post.comments}">
+        <div class="well">
+            <p class="content" th:text="${c.body}">Post Content</p>
+            <small>
+                <p class="text-muted"><span th:text="${c.username}"></span></p>
+                <p class="text-muted"><span th:text="${#dates.format(c.createDate, 'dd-MM-yyyy HH:mm')}">No Date Set</span></p>
+            </small>
+        </div>
+    </article>
+</div>
+
+</body>
+</html>
+

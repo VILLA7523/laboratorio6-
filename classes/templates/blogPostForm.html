@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="layout :: header-css"/>
+</head>
+
+<body>
+
+<header>
+    <div th:replace="layout :: site-header"/>
+</header>
+
+<div class="container">
+
+    <div class="container">
+
+        <div class="row" style="margin-top:20px">
+            <div>
+                <form autocomplete="off" action="#" th:action="@{/createPost}"
+                      th:object="${post}" method="post" class="form-horizontal"
+                      role="form">
+
+                    <h3 class="text-center">Write A New Blog Post</h3>
+
+                    <div class="form-group has-error">
+                        <label label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="control-label" for="usernameError"></label>
+                        <input th:field="*{username}" placeholder="Username" class="form-control" id="usernameError">
+                    </div>
+
+                    <div class="form-group has-error">
+                        <label label th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="control-label" for="titleError"></label>
+                        <input th:field="*{title}" placeholder="Title" class="form-control" id="titleError">
+                    </div>
+
+                    <div class="form-group has-error">
+                        <label label th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="control-label" for="bodyError"></label>
+                        <input th:field="*{body}" placeholder="Body" class="form-control" id="bodyError">
+                    </div>
+
+                    <input type="hidden" th:field="*{id}"/>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" value="Save"/>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
